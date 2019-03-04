@@ -18,7 +18,7 @@ This is a combination between Truffle and ReactJS to create a bootstrapped dApp 
 
 We have `contracts` folder in your cloned directory: `dapp-template`. Put your dapps' solidity files here. To learn solidity, you can refer to [https://solidity.readthedocs.io](https://solidity.readthedocs.io)
 
-### Adjust migrations script for your developed smart contracts:
+### Adjust migration scripts for your developed smart contracts:
 
 Look at `dapp-template/migrations/` and specify your developed smart contracts. Truffle will automatically navigate all files and follow your migrations scenario.
 
