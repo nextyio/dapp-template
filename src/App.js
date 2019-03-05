@@ -2,7 +2,9 @@ import React, { Component } from 'react';
 import logo from './logo.png';
 import './App.css';
 import Web3 from "web3";
-import { Button } from 'reactstrap';
+import { Button } from 'antd';
+import "antd/dist/antd.css";
+
 //Import contract ABI and address from migrated result with Truffle
 import contractReadWriteContent from "./build/contracts/ReadWrite.json";
 var web3;
@@ -11,7 +13,7 @@ var contractReadWrite;
 class App extends Component {
   constructor(props) {
 	  super(props);
-	  this.state = {account: "Not loaded", stateCount: "Not loaded", status: ""}
+	  this.state = {account: "Not loaded", stateCount: "Not loaded", status: "", readLoading: false, writeLoading: false}
   }
   componentDidMount() {
 	// Modern DApp Browsers
@@ -48,16 +50,19 @@ class App extends Component {
   }
   readState = function () {
 	  if (contractReadWrite) {
-		this.setState({status:"Loading..."});
+		this.setState({readLoading:true});
 		contractReadWrite.methods.readState().call({from: this.state.account}).then((result) => {
 			this.setState({stateCount:result});
 			this.setState({status:""});
+			this.setState({readLoading:false});
+			this.setState({writeLoading:false});
 		});
 	  }
   }
   writeState = function (param) {
 	if (contractReadWrite) {
 		this.setState({status:"Please confirm TX Sending with Metamask/TrustWallet/NextyWallet then wait until tx is confirmed..."});
+		this.setState({writeLoading:true});
 		contractReadWrite.methods.writeState(param).send({from: this.state.account}).then((result) => {
 			if (result.blockNumber>0) {
 				this.readState();
@@ -73,8 +78,8 @@ class App extends Component {
 			<p>
 				Nexty Platform: dApp Template
 			</p>
-			<Button className="btn" color="info" onClick={() => this.readState()} >Call readState()</Button>
-			<Button className="btn" color="warning" onClick={() => this.writeState(2)}>Send writeState(2)</Button>
+			<Button type="dashed" onClick={() => this.readState()} loading={this.state.readLoading}>Call readState()</Button>
+			<Button type="warning" onClick={() => this.writeState(2)} loading={this.state.writeLoading}>Send writeState(2)</Button>
 			<div className="text-primary">stateCount value: {this.state.stateCount}</div>
 			<div className="text-info">Account: {this.state.account}</div>			
 			<div className="text-warning">{this.state.status}</div>
