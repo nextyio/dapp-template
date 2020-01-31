@@ -28,7 +28,7 @@ export default createContainer(Component, (state) => {
   return {
     wallet: state.user.wallet,
     balance: state.user.balance,
-    readState: state.contracts.readState
+    readState: state.readWrite.readState
   }
 }, () => {
   const readWriteService = new ReadWriteService()

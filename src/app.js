@@ -9,7 +9,6 @@ import config from '@/config'
 import { USER_ROLE } from '@/constant'
 import { api_request } from './util' // eslint-disable-line
 import UserService from '@/service/UserService'
-import {Helmet} from "react-helmet"
 import { CONTRACTS } from '@/constant'
 import Web3 from 'web3'
 
@@ -26,7 +25,7 @@ const App = () => { // eslint-disable-line
   return (
     <div>
       <Helmet>
-        {/*<script defer src="/assets/js/web310.js"></script>*/}
+        {/* <script defer src="/assets/js/web310.js"></script> */}
       </Helmet>
       <Switch id="ss-main">
         {_.map(config.router, (item, i) => {
@@ -64,8 +63,8 @@ function setupWeb3 () {
     if (accounts.length > 0) {
       window.web3.version.getNetwork((err, networkId) => {
         if (err) {
-          console.error(err);
-          return;
+          console.error(err)
+          return
         }
 
         // detect account switch

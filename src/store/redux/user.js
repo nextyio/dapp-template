@@ -20,7 +20,6 @@ class UserRedux extends BaseRedux {
       blockNumber: 0,
       wallet: null,
       balance: 0,
-      readState: 0,
       inflated: 0,
       exVol: 0,
       exStb: 0,

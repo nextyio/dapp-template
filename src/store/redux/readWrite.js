@@ -1,4 +1,4 @@
-import BaseRedux from '@/model/BaseRedux';
+import BaseRedux from '@/model/BaseRedux'
 
 class ReadWriteRedux extends BaseRedux {
   defineTypes () {
@@ -7,6 +7,7 @@ class ReadWriteRedux extends BaseRedux {
 
   defineDefaultState () {
     return {
+      readState: null
     }
   }
 }

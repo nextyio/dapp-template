@@ -13,8 +13,8 @@ export default class extends BaseService {
     const store = this.store.getState()
     const contract = store.contracts.readWrite
     await contract.methods.readState().call({ from: store.user.wallet }).then((readState) => {
-      const contractsRedux = this.store.getRedux('contracts')
-      this.dispatch(contractsRedux.actions.readState_update(readState))
+      const readWriteRedux = this.store.getRedux('readWrite')
+      this.dispatch(readWriteRedux.actions.readState_update(readState))
     })
   }
 }
